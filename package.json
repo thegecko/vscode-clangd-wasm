@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "author": "Rob Moran <github@thegecko.org>",
   "license": "MIT",
-  "browser": "dist/web-extension.js",
+  "main": "dist/extension.js",
+  "browser": "dist/extension.js",
   "repository": "https://github.com/thegecko/vscode-clangd-wasm",
   "qna": "https://github.com/thegecko/vscode-clangd-wasm/issues",
   "engines": {
@@ -17,7 +18,7 @@
   "scripts": {
     "prepare": "yarn build",
     "clean": "git clean -f -x ./node_modules ./dist",
-    "build": "esbuild src/extension.ts --bundle --outfile=dist/web-extension.js",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js",
     "package": "vsce package --yarn",
     "serve": "serve --cors -p 4455"
   },
