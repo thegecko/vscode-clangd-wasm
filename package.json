@@ -1,0 +1,55 @@
+{
+  "name": "clangd-wasm",
+  "displayName": "clangd WASM",
+  "version": "1.0.0",
+  "author": "Rob Moran <github@thegecko.org>",
+  "license": "MIT",
+  "browser": "dist/web-extension.js",
+  "repository": "https://github.com/thegecko/vscode-clangd-wasm",
+  "qna": "https://github.com/thegecko/vscode-clangd-wasm/issues",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+  ],
+  "keywords": [
+  ],
+  "scripts": {
+    "prepare": "yarn build",
+    "clean": "git clean -f -x ./node_modules ./dist",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/web-extension.js",
+    "package": "vsce package --yarn",
+    "serve": "serve --cors -p 4455"
+  },
+  "devDependencies": {
+    "@thegecko/clangd-wasm": "^1.0.0",
+    "@types/node": "^22.8.4",
+    "@types/vscode": "^1.95.0",
+    "@vscode/vsce": "^3.1.1",
+    "esbuild": "^0.24.0",
+    "serve": "^14.2.3",
+    "typescript": "^5.6.3"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "clangd WASM",
+      "properties": {
+        "clangd-wasm.loggingVerbosity": {
+          "type": "string",
+          "enum": [
+            "off",
+            "error",
+            "warn",
+            "info",
+            "debug"
+          ],
+          "default": "warn",
+          "description": "Specify the logging verbosity of the extension"
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ]
+}
