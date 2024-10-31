@@ -1,7 +1,7 @@
-import { createConnection, ProposedFeatures } from 'vscode-languageserver/node';
+import { IPCMessageReader, IPCMessageWriter } from 'vscode-languageserver/node';
 import { LspServer } from '../lsp/lsp-server';
 
-// Create a connection for the server, using Node's IPC as a transport.
-// Also include all preview / proposed LSP features.
-const connection = createConnection(ProposedFeatures.all);
-new LspServer(connection);
+const messageReader = new IPCMessageReader(process);
+const messageWriter = new IPCMessageWriter(process);
+
+new LspServer(messageReader, messageWriter);

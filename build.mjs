@@ -1,3 +1,4 @@
+import fs from 'fs';
 import * as esbuild from 'esbuild'
 /** @typedef {import('esbuild').BuildOptions} BuildOptions **/
 
@@ -9,6 +10,9 @@ const common = {
     minify: !WATCH,
     bundle: true,
     external: ['vscode'],
+    define: {
+        __WASM_SIZE__: fs.statSync('node_modules/@thegecko/clangd-wasm/dist/clangd.wasm').size.toString(),
+    },
     plugins: [{
         name: 'rebuild-notify',
         setup(build) {
